@@ -1,18 +1,12 @@
 {
     "name": "chipster-js-common",
-    "version": "0.0.5",
+    "version": "0.2.0",
     "private": false,
     "main": "src/exports.js",
     "scripts": {
         "prepare": "tsc"
     },
-    "dependencies": {
-        "@akanass/rx-http-request": "^3.0.0",
-        "restify": "^7.2.1",
-        "rxjs": "6.0.0",
-        "winston": "^2.4.0",
-        "yamljs": "^0.3.0"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/node": "~10.1.2",
         "ts-node": "~5.0.1",
