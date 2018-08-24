@@ -19,3 +19,4 @@ export { default as Session } from "./model/session";
 export { default as Tool } from "./model/tool";
 export { default as ToolInput } from "./model/toolinput";
 export { default as ToolParameter } from "./model/toolparameter";
+export { default as Token } from "./model/token";

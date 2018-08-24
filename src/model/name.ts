@@ -4,4 +4,5 @@ export default class Name {
   prefix: string;
   postfix: string;
   spliced: boolean;
+  description: string;
 }
