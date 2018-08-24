@@ -1,4 +1,4 @@
-export class User {
+export default class User {
     public auth: string;
     public username: string;
     public mail: string;

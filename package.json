@@ -1,10 +1,11 @@
 {
     "name": "chipster-js-common",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "private": false,
-    "main": "src/exports.js",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "scripts": {
-        "prepare": "tsc"
+        "prepare": "tsc --declaration"
     },
     "dependencies": {},
     "devDependencies": {

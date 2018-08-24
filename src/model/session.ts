@@ -9,3 +9,4 @@ export default class Session {
     sessionId: string;
     rules: Array<Rule>;
 }
+

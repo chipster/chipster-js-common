@@ -1,4 +1,4 @@
-export class Role {
+export default class Role {
     public static PASSWORD = 'password';
 	public static CLIENT = 'client';
 	public static SESSION_DB = 'session-db';

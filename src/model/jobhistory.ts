@@ -1,4 +1,4 @@
-export class JobHistory {
+export default class JobHistory {
   jobId: string;
   userName: string;
   toolId:string;

@@ -1,4 +1,4 @@
-export class Service {
+export default class Service {
   public serviceId: string;
   public role: string;
   public uri: string;
