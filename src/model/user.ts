@@ -6,7 +6,7 @@ export default class User {
     public name: string;
     public termsAccepted: string;
     public termsVersion: number;
-
+    public latestSession: string;
     public version: number;
     public created: string;
     public modified: string;
