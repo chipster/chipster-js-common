@@ -7,6 +7,7 @@ export default class Job {
     endTime: string;
     inputs: JobInput[];
     jobId: string;
+    sessionId: string;
     module: string;
     parameters: JobParameter[];
     screenOutput: string;

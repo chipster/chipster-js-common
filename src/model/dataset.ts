@@ -8,6 +8,7 @@ export default class Dataset {
   checksum: string;
   created: string;
   datasetId: string;
+  sessionId: string;
   fileId: string;
   metadata: MetadataEntry[];
   typeTags: { [key: string]: string };
