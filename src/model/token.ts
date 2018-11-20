@@ -1,7 +1,8 @@
 export default class Token {
-    tokenKey: string;
-    username: string;
-    created: string;
-    validUntil: string;
-    rolesJson: string;
-  }
+  tokenKey: string;
+  username: string;
+  name: string;
+  created: string;
+  validUntil: string;
+  rolesJson: string;
+}
