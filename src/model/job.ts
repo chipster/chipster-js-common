@@ -1,6 +1,22 @@
 import JobInput from './jobinput';
 import JobParameter from './jobparameter';
 
+export const enum JobState {
+        New = "NEW", 
+        Running = "RUNNING", 
+        Completed = "COMPLETED", 
+        Failed = "FAILED", 
+        FailedUserError = "FAILED_USER_ERROR", 
+        Error = "ERROR", 
+        Timeout = "TIMEOUT", 
+        Cancelled = "CANCELLED",
+        CompBusy = "COMP_BUSY",
+        Rescheduled = "RESCHEDULED",
+        Scheduled = "SCHEDULED",
+        Waiting = "WAITING",
+        ExpiredWaiting = "EXPIRED_WAITING", 
+}
+
 export default class Job {
 
     created: string;
@@ -13,7 +29,7 @@ export default class Job {
     screenOutput: string;
     sourceCode: string;
     startTime: string;
-    state: string;
+    state: JobState;
     stateDetail: string;
     toolCategory: string;
     toolDescription: string;
