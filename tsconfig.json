@@ -1,16 +1,14 @@
 {
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es5",
     "lib": [
       // rxjs references staff from DOM
-      "DOM",
-      "ES5",
-      "ES2016"
+      "dom",
+      "es5",
+      "es2016"
     ],
     "outDir": "./lib"
   }
