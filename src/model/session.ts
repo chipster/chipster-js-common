@@ -1,21 +1,19 @@
 import Rule from "./rule";
 
 export const enum SessionState {
-    Import = "IMPORT",
-    Temporary = "TEMPORARY",
-    Ready = "READY",
-    Delete = "DELETE",
+  Import = "IMPORT",
+  TemporaryUnmodified = "TEMPORARY_UNMODIFIED",
+  Ready = "READY",
+  Delete = "DELETE",
+  TemporaryModified = "TEMPORARY_MODIFIED"
 }
 
 export default class Session {
-
-    constructor (public name: string) {
-    }
-    accessed: string;
-    created: string;
-    notes: string;
-    sessionId: string;
-    rules: Array<Rule>;
-    state: SessionState;
+  constructor(public name: string) {}
+  accessed: string;
+  created: string;
+  notes: string;
+  sessionId: string;
+  rules: Array<Rule>;
+  state: SessionState;
 }
-
