@@ -6,4 +6,5 @@ export default class Rule {
   username: string;
   readWrite: boolean;
   sharedBy: string;
+  created: string;
 }
