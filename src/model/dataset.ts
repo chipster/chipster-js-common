@@ -14,6 +14,7 @@ export default class Dataset {
   typeTags: { [key: string]: string };
   name: string;
   notes: string;
+  phenodta: string;
   size: number;
   sourceJob: string;
   x: number;
