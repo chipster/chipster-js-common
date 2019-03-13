@@ -1,6 +1,6 @@
 import JobInput from "./jobinput";
 import JobParameter from "./jobparameter";
-import PhenodataFile from "./phenodata-file";
+import MetadataFile from "./metadata-file";
 
 export const enum JobState {
   New = "NEW",
@@ -26,7 +26,7 @@ export default class Job {
   sessionId: string;
   module: string;
   parameters: JobParameter[];
-  phenodataFiles: PhenodataFile[];
+  metadataFiles: MetadataFile[];
   screenOutput: string;
   sourceCode: string;
   startTime: string;

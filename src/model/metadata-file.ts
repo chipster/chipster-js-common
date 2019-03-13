@@ -1,4 +1,4 @@
-export default class PhenodataFile {
+export default class MetadataFile {
   name: string;
   content: string;
 }

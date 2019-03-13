@@ -1,4 +1,5 @@
 import MetadataEntry from "./metadataentry";
+import MetadataFile from "./metadata-file";
 
 export default class Dataset {
   constructor(name: string) {
@@ -14,7 +15,7 @@ export default class Dataset {
   typeTags: { [key: string]: string };
   name: string;
   notes: string;
-  phenodata: string;
+  metadataFiles: MetadataFile[];
   size: number;
   sourceJob: string;
   x: number;
