@@ -10,7 +10,6 @@ export { default as InputBinding } from "./model/inputbinding";
 export { default as Job, JobState } from "./model/job";
 export { default as JobInput } from "./model/jobinput";
 export { default as JobParameter } from "./model/jobparameter";
-export { default as MetadataEntry } from "./model/metadataentry";
 export { default as Module } from "./model/module";
 export { default as Name } from "./model/name";
 export { default as Output } from "./model/output";
