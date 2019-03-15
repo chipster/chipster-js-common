@@ -1,4 +1,3 @@
-import MetadataEntry from "./metadataentry";
 import MetadataFile from "./metadata-file";
 
 export default class Dataset {
@@ -11,7 +10,6 @@ export default class Dataset {
   datasetId: string;
   sessionId: string;
   fileId: string;
-  metadata: MetadataEntry[];
   typeTags: { [key: string]: string };
   name: string;
   notes: string;
