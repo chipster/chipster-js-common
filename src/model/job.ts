@@ -2,7 +2,7 @@ import JobInput from "./jobinput";
 import JobParameter from "./jobparameter";
 import MetadataFile from "./metadata-file";
 
-export const enum JobState {
+export enum JobState {
   New = "NEW",
   Running = "RUNNING",
   Completed = "COMPLETED",
