@@ -1,6 +1,6 @@
 {
   "name": "chipster-js-common",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": false,
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,9 +9,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "~10.1.2",
-    "ts-node": "~5.0.1",
-    "typescript": "~2.7.2"
+    "@types/node": "^12.7.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   },
   "engines": {
     "node": "v0.6.x"
