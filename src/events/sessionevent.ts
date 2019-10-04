@@ -1,12 +1,18 @@
+import { WorkflowPlan, WorkflowRun } from "..";
 import Dataset from "../model/dataset";
 import Job from "../model/job";
-import Session from "../model/session";
 import Rule from "../model/rule";
-
+import Session from "../model/session";
 export default class SessionEvent {
-    constructor(
-      public event: any,
-      public oldValue: Dataset | Job | Session | Rule,
-      public newValue: Dataset | Job | Session | Rule) {
-    }
+  constructor(
+    public event: any,
+    public oldValue:
+      | Dataset
+      | Job
+      | Session
+      | Rule
+      | WorkflowPlan
+      | WorkflowRun,
+    public newValue: Dataset | Job | Session | Rule | WorkflowPlan | WorkflowRun
+  ) {}
 }

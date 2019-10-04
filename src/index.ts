@@ -1,3 +1,4 @@
+export { default as ServerSessionEvent } from "./events/server-session-event";
 export { default as SessionEvent } from "./events/sessionevent";
 export { default as WsEvent, EventType, Resource } from "./events/wsevent";
 export { default as Category } from "./model/category";
@@ -20,4 +21,7 @@ export { default as Tool } from "./model/tool";
 export { default as ToolInput } from "./model/toolinput";
 export { default as ToolParameter } from "./model/toolparameter";
 export { default as User } from "./model/user";
+export { default as WorkflowJobPlan } from "./model/workflow-job-plan";
+export { default as WorkflowPlan } from "./model/workflow-plan";
+export { default as WorkflowRun } from "./model/workflow-run";
 export { default as PhenodataUtils } from "./utils/phenodata-utils";
