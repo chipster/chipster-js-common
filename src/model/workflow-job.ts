@@ -1,10 +1,11 @@
-import JobInput from "./jobinput";
 import JobParameter from "./jobparameter";
 import MetadataFile from "./metadata-file";
+import WorkflowInput from "./workflow-input";
 
-export default class WorkflowJobPlan {
-  workflowJobPlanId: string;
-  inputs: JobInput[];
+export default class WorkflowJob {
+  workflowJobId: string;
+  jobId: string;
+  inputs: WorkflowInput[];
   sessionId: string;
   module: string;
   parameters: JobParameter[];

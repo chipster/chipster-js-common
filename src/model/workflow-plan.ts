@@ -1,4 +1,4 @@
-import WorkflowJobPlan from "./workflow-job-plan";
+import WorkflowJob from "./workflow-job";
 
 export default class WorkflowPlan {
   created: string;
@@ -7,5 +7,5 @@ export default class WorkflowPlan {
   sessionId: string;
   originalDuration: string;
   notes: string;
-  workflowJobPlans: WorkflowJobPlan[];
+  workflowJobs: WorkflowJob[];
 }
