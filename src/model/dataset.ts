@@ -16,6 +16,7 @@ export default class Dataset {
   metadataFiles: MetadataFile[];
   size: number;
   sourceJob: string;
+  sourceJobOutputId: string;
   x: number;
   y: number;
 }
