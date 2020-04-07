@@ -13,6 +13,7 @@ export { default as Name } from "./model/name";
 export { default as Output } from "./model/output";
 export { default as Role } from "./model/role";
 export { default as Rule } from "./model/rule";
+export { default as Share } from "./model/share";
 export { default as Service } from "./model/service";
 export { default as Session, SessionState } from "./model/session";
 export { default as Token } from "./model/token";
