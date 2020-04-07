@@ -1,6 +1,6 @@
 {
   "name": "chipster-js-common",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "private": false,
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
