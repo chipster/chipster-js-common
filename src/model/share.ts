@@ -13,4 +13,5 @@ export default class Share {
   shareTo: string;
   shareType: ShareType;
   created: string;
+  sessionId: string;
 }
