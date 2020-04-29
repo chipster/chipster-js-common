@@ -18,6 +18,7 @@ export default class Share {
   shareBy: string;
   shareTo: string;
   shareType: ShareType;
+  shareState: ShareState;
   created: string;
   sessionId: string;
 }
