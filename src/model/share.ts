@@ -5,6 +5,12 @@ export const enum ShareType {
   Full = "FULL",
 }
 
+export const enum ShareState {
+  Pending = "PENDING",
+  Accepted = "ACCEPTED",
+  Rejected = "REJECTED",
+}
+
 export default class Share {
   constructor() {}
   
