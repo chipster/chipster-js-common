@@ -1,15 +1,14 @@
 export default class JobHistory {
   jobId: string;
-  userName: string;
   toolId:string;
-  toolName: string;
-  compName: string;
-  timeDuration: string;
+  comp: string;
   startTime: string;
   endTime: string;
-  output: string;
-  error: string
-  jobStatus: string;
-
-
+  created: string;
+  createdBy: string;
+  screenOutput: string;
+  state: string;
+  stateDetail: string;
+  memoryUsage: number;
+  module: string;
 }
