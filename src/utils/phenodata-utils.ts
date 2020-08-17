@@ -116,7 +116,7 @@ export default class PhenodataUtils {
 // get all parents
 const allParents = datasets.reduce(
   (parents: Dataset[], dataset: Dataset) => {
-    return parents.concat(PhenodataUtils.getParentDatasets(dataset, sessionData.jobsMap, sessionData.datasetsMap));
+    return parents.concat(PhenodataUtils.getParentDatasets(dataset, jobsMap, datasetsMap));
   },
   []
 );
