@@ -1,5 +1,6 @@
 import { Dataset, Job } from "..";
 import MetadataFile from "../model/metadata-file";
+import * as _ from "lodash";
 
 export default class PhenodataUtils {
   static readonly PHENODATA_PREFIX = "phenodata";
@@ -95,38 +96,45 @@ export default class PhenodataUtils {
     );
   }
 
-  private static getAncestorsBottomUpBreadthFirstWithFilter(
+  /**
+   * TODO Recursive and that _.uniqWith maybe not good.
+   *
+   * @param sessionData
+   * @param datasets
+   * @param filter
+   */
+  public static getAncestorsBottomUpBreadthFirstWithFilter(
     datasets: Dataset[],
     filter: (Dataset) => boolean,
     jobsMap: Map<string, Job>,
     datasetsMap: Map<string, Dataset>
   ): Dataset[] {
-    // stop if no datasets
-    if (datasets.length < 1) {
-      return [];
-    }
+ // stop if no datasets
+ if (datasets.length < 1) {
+  return [];
+}
+// get all parents
+const allParents = datasets.reduce(
+  (parents: Dataset[], dataset: Dataset) => {
+    return parents.concat(PhenodataUtils.getParentDatasets(dataset, sessionData.jobsMap, sessionData.datasetsMap));
+  },
+  []
+);
 
-    // add datasets with phenodata to results
-    const datasetsWithPhenodata = datasets.filter(filter);
+// add parents which pass the filter to results
+const filteredAncestors = allParents.filter(filter);
 
-    // get parents of the datasets and process them next
-    const allParents = datasets.reduce(
-      (previousLevelParents: Dataset[], parent: Dataset) => {
-        return previousLevelParents.concat(
-          this.getParentDatasets(parent, jobsMap, datasetsMap)
-        );
-      },
-      []
-    );
-
-    return datasetsWithPhenodata.concat(
-      this.getAncestorsBottomUpBreadthFirstWithFilter(
-        allParents,
-        filter,
-        jobsMap,
-        datasetsMap
-      )
-    );
+return _.uniqWith(
+  filteredAncestors.concat(
+    this.getAncestorsBottomUpBreadthFirstWithFilter(
+      allParents,
+      filter,
+      jobsMap,
+      datasetsMap,
+    )
+  ),
+  (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
+);
   }
 
   static getParentDatasets(
@@ -136,9 +144,9 @@ export default class PhenodataUtils {
   ): Dataset[] {
     // if source job exists and has inputs, return those that still exist on this session
     const sourceJob = jobsMap.get(dataset.sourceJob);
-    return sourceJob != null ||
-      sourceJob.inputs != null ||
-      sourceJob.inputs.length > 1
+    return sourceJob != null &&
+      sourceJob.inputs != null &&
+      sourceJob.inputs.length > 0
       ? sourceJob.inputs
           .map(jobInput => datasetsMap.get(jobInput.datasetId))
           .filter(parentDataset => parentDataset != null)
