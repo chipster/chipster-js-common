@@ -19,8 +19,8 @@ export default class PhenodataUtils {
   static getOwnPhenodataFile(dataset: Dataset): MetadataFile {
     return dataset.metadataFiles != null
       ? dataset.metadataFiles.find(metadataFile =>
-          metadataFile.name.startsWith(this.PHENODATA_PREFIX)
-        )
+        metadataFile.name.startsWith(this.PHENODATA_PREFIX)
+      )
       : null;
   }
 
@@ -89,8 +89,8 @@ export default class PhenodataUtils {
       return [];
     }
     return this.getAncestorsBottomUpBreadthFirstWithFilter(
-      this.getParentDatasets(dataset, jobsMap, datasetsMap),
-      (d: Dataset) => this.hasOwnPhenodata(d),
+      [dataset],
+      () => true,
       jobsMap,
       datasetsMap
     );
@@ -103,38 +103,40 @@ export default class PhenodataUtils {
    * @param datasets
    * @param filter
    */
-  public static getAncestorsBottomUpBreadthFirstWithFilter(
+  static getAncestorsBottomUpBreadthFirstWithFilter(
     datasets: Dataset[],
     filter: (Dataset) => boolean,
     jobsMap: Map<string, Job>,
     datasetsMap: Map<string, Dataset>
   ): Dataset[] {
- // stop if no datasets
- if (datasets.length < 1) {
-  return [];
-}
-// get all parents
-const allParents = datasets.reduce(
-  (parents: Dataset[], dataset: Dataset) => {
-    return parents.concat(PhenodataUtils.getParentDatasets(dataset, jobsMap, datasetsMap));
-  },
-  []
-);
+    // stop if no datasets
+    if (datasets.length < 1) {      
+      return [];
+    }
+    // get all parents
+    const allParents = datasets.reduce(
+      (parents: Dataset[], dataset: Dataset) => {
+        let newParents = this.getParentDatasets(dataset, jobsMap, datasetsMap)
+        return parents.concat(newParents);
+      },
+      []
+    );
 
-// add parents which pass the filter to results
-const filteredAncestors = allParents.filter(filter);
+    // add parents which pass the filter to results
+    const filteredAncestors = allParents.filter(filter);
 
-return _.uniqWith(
-  filteredAncestors.concat(
-    this.getAncestorsBottomUpBreadthFirstWithFilter(
+    let grandParents = this.getAncestorsBottomUpBreadthFirstWithFilter(
       allParents,
       filter,
       jobsMap,
-      datasetsMap,
-    )
-  ),
-  (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
-);
+      datasetsMap);
+
+    let uniqueAncestors = _.uniqWith(
+      filteredAncestors.concat(grandParents),
+      (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
+    );
+
+    return uniqueAncestors;
   }
 
   static getParentDatasets(
@@ -143,13 +145,17 @@ return _.uniqWith(
     datasetsMap: Map<string, Dataset>
   ): Dataset[] {
     // if source job exists and has inputs, return those that still exist on this session
-    const sourceJob = jobsMap.get(dataset.sourceJob);
-    return sourceJob != null &&
+    const sourceJob = jobsMap.get(dataset.sourceJob);    
+
+    if (sourceJob != null &&
       sourceJob.inputs != null &&
-      sourceJob.inputs.length > 0
-      ? sourceJob.inputs
-          .map(jobInput => datasetsMap.get(jobInput.datasetId))
-          .filter(parentDataset => parentDataset != null)
-      : [];
+      sourceJob.inputs.length > 0) {
+
+      return sourceJob.inputs
+        .map(jobInput => datasetsMap.get(jobInput.datasetId))
+        .filter(parentDataset => parentDataset != null);
+    } else {
+      return [];
+    }
   }
 }
