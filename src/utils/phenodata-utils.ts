@@ -90,7 +90,7 @@ export default class PhenodataUtils {
     }
     return this.getAncestorsBottomUpBreadthFirstWithFilter(
       [dataset],
-      () => true,
+      (d: Dataset) => this.hasOwnPhenodata(d),
       jobsMap,
       datasetsMap
     );
@@ -122,8 +122,12 @@ export default class PhenodataUtils {
       []
     );
 
+    console.log("parents", allParents);
+
     // add parents which pass the filter to results
     const filteredAncestors = allParents.filter(filter);
+
+    console.log("filtered parents", filteredAncestors);
 
     let grandParents = this.getAncestorsBottomUpBreadthFirstWithFilter(
       allParents,
@@ -131,10 +135,14 @@ export default class PhenodataUtils {
       jobsMap,
       datasetsMap);
 
+    console.log("grand parents", grandParents);
+
     let uniqueAncestors = _.uniqWith(
       filteredAncestors.concat(grandParents),
       (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
     );
+
+    console.log("unique parents", uniqueAncestors);
 
     return uniqueAncestors;
   }
