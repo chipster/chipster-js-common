@@ -113,6 +113,7 @@ export default class PhenodataUtils {
     if (datasets.length < 1) {      
       return [];
     }
+
     // get all parents
     const allParents = datasets.reduce(
       (parents: Dataset[], dataset: Dataset) => {
@@ -122,27 +123,33 @@ export default class PhenodataUtils {
       []
     );
 
-    console.log("parents", allParents);
+    // remove duplicate datasets when there were multiple routes to the same (grand)parent
+    let uniqueParents = _.uniqWith(
+      allParents,
+      (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
+    );
+
+    //console.log("parents", uniqueParents);
 
     // add parents which pass the filter to results
-    const filteredAncestors = allParents.filter(filter);
+    const filteredAncestors = uniqueParents.filter(filter);
 
-    console.log("filtered parents", filteredAncestors);
+    //console.log("filtered parents", filteredAncestors);
 
     let grandParents = this.getAncestorsBottomUpBreadthFirstWithFilter(
-      allParents,
+      uniqueParents,
       filter,
       jobsMap,
       datasetsMap);
 
-    console.log("grand parents", grandParents);
+    //console.log("grand parents", grandParents);
 
     let uniqueAncestors = _.uniqWith(
       filteredAncestors.concat(grandParents),
       (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
     );
 
-    console.log("unique parents", uniqueAncestors);
+    //console.log("unique parents", uniqueAncestors);
 
     return uniqueAncestors;
   }
