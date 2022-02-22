@@ -26,6 +26,7 @@ export default class Job {
   sessionId: string;
   module: string;
   parameters: JobParameter[];
+  memoryUsage: number;
   metadataFiles: MetadataFile[];
   screenOutput: string;
   sourceCode: string;
