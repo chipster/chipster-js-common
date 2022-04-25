@@ -33,6 +33,7 @@ export default class Job {
   startTime: string;
   state: JobState;
   stateDetail: string;
+  storageUsage: number;
   toolCategory: string;
   toolDescription: string;
   toolId: string;
