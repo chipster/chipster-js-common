@@ -27,6 +27,8 @@ export default class Job {
   module: string;
   parameters: JobParameter[];
   memoryUsage: number;
+  memoryLimit: number;
+  cpuLimit: number;
   metadataFiles: MetadataFile[];
   screenOutput: string;
   sourceCode: string;
