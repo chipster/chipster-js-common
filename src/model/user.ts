@@ -11,5 +11,5 @@ export default class User {
   public created: string;
   public modified: string;
   public accessed: string;
-  public preferences: string;
+  public preferences: any;
 }
