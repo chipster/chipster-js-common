@@ -10,5 +10,6 @@ export default class JobHistory {
   state: string;
   stateDetail: string;
   memoryUsage: number;
+  storageUsage: number;
   module: string;
 }
