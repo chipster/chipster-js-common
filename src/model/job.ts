@@ -1,4 +1,5 @@
 import JobInput from "./jobinput";
+import JobOutput from "./joboutput";
 import JobParameter from "./jobparameter";
 import MetadataFile from "./metadata-file";
 
@@ -22,6 +23,7 @@ export default class Job {
   created: string;
   endTime: string;
   inputs: JobInput[];
+  outputs: JobOutput[];
   jobId: string;
   sessionId: string;
   module: string;
