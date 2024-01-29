@@ -1,11 +1,11 @@
 {
   "name": "chipster-js-common",
-  "version": "1.3.5",
+  "version": "1.4.0",
   "private": false,
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepare": "tsc --declaration"
+    "prepare": "npx tsc --declaration"
   },
   "repository": {
     "type": "git",
@@ -16,8 +16,8 @@
     "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "@types/node": "^14.14.28",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.4"
+    "@types/node": "^20.11.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
