@@ -1,5 +1,10 @@
 import MetadataFile from "./metadata-file";
 
+export enum FileState {
+  Uploading = "UPLOADING",
+  Complete = "COMPLETE",
+}
+
 export default class Dataset {
   constructor(name: string) {
     this.name = name;
@@ -18,4 +23,5 @@ export default class Dataset {
   sourceJob: string;
   x: number;
   y: number;
+  state: FileState;
 }
