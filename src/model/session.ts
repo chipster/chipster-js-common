@@ -1,11 +1,11 @@
-import Rule from "./rule";
+import Rule from "./rule.js";
 
 export const enum SessionState {
   Import = "IMPORT",
   TemporaryUnmodified = "TEMPORARY_UNMODIFIED",
   Ready = "READY",
   Delete = "DELETE",
-  TemporaryModified = "TEMPORARY_MODIFIED"
+  TemporaryModified = "TEMPORARY_MODIFIED",
 }
 
 export default class Session {

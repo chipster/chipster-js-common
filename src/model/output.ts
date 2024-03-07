@@ -1,7 +1,7 @@
-import Name from "./name";
+import Name from "./name.js";
 export default class Output {
-    description: string;
-    meta: boolean;
-    name: Name;
-    optional: boolean;
+  description: string;
+  meta: boolean;
+  name: Name;
+  optional: boolean;
 }

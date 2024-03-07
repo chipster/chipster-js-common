@@ -1,7 +1,7 @@
-import JobInput from "./jobinput";
-import JobOutput from "./joboutput";
-import JobParameter from "./jobparameter";
-import MetadataFile from "./metadata-file";
+import JobInput from "./jobinput.js";
+import JobOutput from "./joboutput.js";
+import JobParameter from "./jobparameter.js";
+import MetadataFile from "./metadata-file.js";
 
 export enum JobState {
   New = "NEW",
@@ -16,7 +16,7 @@ export enum JobState {
   Rescheduled = "RESCHEDULED",
   Scheduled = "SCHEDULED",
   Waiting = "WAITING",
-  ExpiredWaiting = "EXPIRED_WAITING"
+  ExpiredWaiting = "EXPIRED_WAITING",
 }
 
 export default class Job {

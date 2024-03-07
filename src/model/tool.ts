@@ -1,13 +1,13 @@
-import Name from "./name";
-import Output from "./output";
-import Parameter from "./toolparameter";
-import ToolInput from "./toolinput";
+import Name from "./name.js";
+import Output from "./output.js";
+import Parameter from "./toolparameter.js";
+import ToolInput from "./toolinput.js";
 
 export default class Tool {
-    description: string;
-    inputs: ToolInput[];
-    name: Name;
-    outputs: Output[];
-    parameters: Parameter[];
-    slotCount: number;
+  description: string;
+  inputs: ToolInput[];
+  name: Name;
+  outputs: Output[];
+  parameters: Parameter[];
+  slotCount: number;
 }

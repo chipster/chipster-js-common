@@ -1,4 +1,4 @@
-import MetadataFile from "./metadata-file";
+import type MetadataFile from "./metadata-file.js";
 
 export enum FileState {
   Uploading = "UPLOADING",

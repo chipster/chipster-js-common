@@ -1,6 +1,7 @@
-import { Dataset, Job } from "..";
-import MetadataFile from "../model/metadata-file";
-import * as _ from "lodash";
+import { uniqWith } from "lodash-es";
+import type Dataset from "../model/dataset.js";
+import type Job from "../model/job.js";
+import MetadataFile from "../model/metadata-file.js";
 
 export default class PhenodataUtils {
   static readonly PHENODATA_PREFIX = "phenodata";
@@ -11,16 +12,18 @@ export default class PhenodataUtils {
     return this.getOwnPhenodata(dataset) != null;
   }
 
-  static getOwnPhenodata(dataset: Dataset): string {
+  static getOwnPhenodata(dataset: Dataset | null): string | null {
     const phenodataFile = this.getOwnPhenodataFile(dataset);
     return phenodataFile != null ? phenodataFile.content : null;
   }
 
-  static getOwnPhenodataFile(dataset: Dataset): MetadataFile {
-    return dataset.metadataFiles != null
-      ? dataset.metadataFiles.find(metadataFile =>
-        metadataFile.name.startsWith(this.PHENODATA_PREFIX)
-      )
+  static getOwnPhenodataFile(
+    dataset: Dataset | null
+  ): MetadataFile | null | undefined {
+    return dataset != null && dataset.metadataFiles != null
+      ? dataset.metadataFiles.find((metadataFile) =>
+          metadataFile.name.startsWith(this.PHENODATA_PREFIX)
+        )
       : null;
   }
 
@@ -35,8 +38,8 @@ export default class PhenodataUtils {
     dataset: Dataset,
     jobsMap: Map<string, Job>,
     datasetsMap: Map<string, Dataset>,
-    phenodataTypeCheck: (Dataset) => boolean
-  ): string {
+    phenodataTypeCheck: (dataset: Dataset) => boolean
+  ): string | null {
     return this.getOwnPhenodata(
       this.getPhenodataDataset(
         dataset,
@@ -58,8 +61,8 @@ export default class PhenodataUtils {
     dataset: Dataset,
     jobsMap: Map<string, Job>,
     datasetsMap: Map<string, Dataset>,
-    phenodataTypeCheck: (Dataset) => boolean
-  ): Dataset {
+    phenodataTypeCheck: (dataset: Dataset) => boolean
+  ): Dataset | null {
     if (dataset == null) {
       return null;
     }
@@ -83,7 +86,7 @@ export default class PhenodataUtils {
     dataset: Dataset,
     jobsMap: Map<string, Job>,
     datasetsMap: Map<string, Dataset>,
-    phenodataTypeCheck: (Dataset) => boolean
+    phenodataTypeCheck: (dataset: Dataset) => boolean
   ) {
     if (!phenodataTypeCheck(dataset)) {
       return [];
@@ -105,26 +108,26 @@ export default class PhenodataUtils {
    */
   static getAncestorsBottomUpBreadthFirstWithFilter(
     datasets: Dataset[],
-    filter: (Dataset) => boolean,
+    filter: (dataset: Dataset) => boolean,
     jobsMap: Map<string, Job>,
     datasetsMap: Map<string, Dataset>
   ): Dataset[] {
     // stop if no datasets
-    if (datasets.length < 1) {      
+    if (datasets.length < 1) {
       return [];
     }
 
     // get all parents
     const allParents = datasets.reduce(
       (parents: Dataset[], dataset: Dataset) => {
-        let newParents = this.getParentDatasets(dataset, jobsMap, datasetsMap)
+        let newParents = this.getParentDatasets(dataset, jobsMap, datasetsMap);
         return parents.concat(newParents);
       },
       []
     );
 
     // remove duplicate datasets when there were multiple routes to the same (grand)parent
-    let uniqueParents = _.uniqWith(
+    let uniqueParents = uniqWith(
       allParents,
       (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
     );
@@ -140,11 +143,12 @@ export default class PhenodataUtils {
       uniqueParents,
       filter,
       jobsMap,
-      datasetsMap);
+      datasetsMap
+    );
 
     //console.log("grand parents", grandParents);
 
-    let uniqueAncestors = _.uniqWith(
+    let uniqueAncestors = uniqWith(
       filteredAncestors.concat(grandParents),
       (d1: Dataset, d2: Dataset) => d1.datasetId === d2.datasetId
     );
@@ -160,15 +164,16 @@ export default class PhenodataUtils {
     datasetsMap: Map<string, Dataset>
   ): Dataset[] {
     // if source job exists and has inputs, return those that still exist on this session
-    const sourceJob = jobsMap.get(dataset.sourceJob);    
+    const sourceJob = jobsMap.get(dataset.sourceJob);
 
-    if (sourceJob != null &&
+    if (
+      sourceJob != null &&
       sourceJob.inputs != null &&
-      sourceJob.inputs.length > 0) {
-
+      sourceJob.inputs.length > 0
+    ) {
       return sourceJob.inputs
-        .map(jobInput => datasetsMap.get(jobInput.datasetId))
-        .filter(parentDataset => parentDataset != null);
+        .map((jobInput) => datasetsMap.get(jobInput.datasetId))
+        .filter((parentDataset) => parentDataset != null) as Dataset[];
     } else {
       return [];
     }

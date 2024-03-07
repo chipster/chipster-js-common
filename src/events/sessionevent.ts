@@ -1,12 +1,12 @@
-import Dataset from "../model/dataset";
-import Job from "../model/job";
-import Session from "../model/session";
-import Rule from "../model/rule";
+import type Dataset from "../model/dataset.js";
+import type Job from "../model/job.js";
+import type Rule from "../model/rule.js";
+import type Session from "../model/session.js";
 
 export default class SessionEvent {
-    constructor(
-      public event: any,
-      public oldValue: Dataset | Job | Session | Rule,
-      public newValue: Dataset | Job | Session | Rule) {
-    }
+  constructor(
+    public event: any,
+    public oldValue: Dataset | Job | Session | Rule,
+    public newValue: Dataset | Job | Session | Rule
+  ) {}
 }

@@ -1,4 +1,4 @@
-import Category from "./category";
+import Category from "./category.js";
 export default class Module {
   name: string;
   categories: Category[];
