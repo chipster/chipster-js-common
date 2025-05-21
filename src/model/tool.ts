@@ -10,4 +10,5 @@ export default class Tool {
   outputs: Output[];
   parameters: Parameter[];
   slotCount: number;
+  storage: number;
 }
