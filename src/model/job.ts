@@ -31,6 +31,7 @@ export default class Job {
   memoryUsage: number;
   memoryLimit: number;
   cpuLimit: number;
+  slotLimit: number;
   metadataFiles: MetadataFile[];
   screenOutput: string;
   sourceCode: string;
@@ -38,6 +39,7 @@ export default class Job {
   state: JobState;
   stateDetail: string;
   storageUsage: number;
+  storageLimit: number;
   toolCategory: string;
   toolDescription: string;
   toolId: string;
