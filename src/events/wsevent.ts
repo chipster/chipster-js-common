@@ -1,3 +1,4 @@
+import type { FileState } from "../model/dataset.js";
 import { JobState } from "../model/job.js";
 import { SessionState } from "../model/session.js";
 
@@ -21,7 +22,7 @@ export default class WsEvent {
     public resourceType: Resource,
     public resourceId: string,
     public type: EventType,
-    public state: SessionState | JobState,
+    public state: SessionState | JobState | FileState,
   ) {}
 
   serverId: string;
