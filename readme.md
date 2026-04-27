@@ -9,8 +9,10 @@ npm install chipster-js-common --save
 ```
 
 ## Changes
+
 ### Test locally
-* Link the local project
+
+- Link the local project
 
 ```bash
 cd ~/git/chipster-js-common/
@@ -19,16 +21,16 @@ cd ~/git/YOUR_PROJECT/
 npm link chipster-js-common
 ```
 
-* Do your changes
-* Compile this project
+- Do your changes
+- Compile this project
 
 ```bash
 tsc
 ```
 
-* Compile your project
-* Repeat from start until ready
-* Remove the local link
+- Compile your project
+- Repeat from start until ready
+- Remove the local link
 
 ```bash
 npm install
@@ -36,15 +38,16 @@ npm install
 
 ### Publish
 
-* Bump the version number in package.json
-* Publish it to npmjs.com
+- Bump the version number in package.json
+- Publish it to npmjs.com
 
 ```bash
+npm login
 npm publish
 ```
 
-* Update the version number in the package.json of your project
-* Install it
+- Update the version number in the package.json of your project
+- Install it
 
 ```bash
 npm install
