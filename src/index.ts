@@ -16,6 +16,7 @@ export { default as Rule } from "./model/rule.js";
 export { default as Share } from "./model/share.js";
 export { default as Service } from "./model/service.js";
 export { default as Session, SessionState } from "./model/session.js";
+export { default as Label } from "./model/label.js";
 export { default as Token } from "./model/token.js";
 export { default as Tool } from "./model/tool.js";
 export { default as ToolInput } from "./model/toolinput.js";
