@@ -8,6 +8,7 @@ export const enum Resource {
   Session = "SESSION",
   Rule = "RULE",
   News = "NEWS",
+  Label = "LABEL",
 }
 
 export const enum EventType {
