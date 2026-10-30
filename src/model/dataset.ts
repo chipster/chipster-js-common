@@ -19,6 +19,7 @@ export default class Dataset {
   name: string;
   notes: string;
   metadataFiles: MetadataFile[];
+  labelIds: string[];
   size: number;
   sourceJob: string;
   x: number;
